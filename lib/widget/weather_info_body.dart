@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubits/getWeatherCupit/getWeatherCubit.dart';
+import 'package:weather_app/main.dart';
 import 'package:weather_app/modls/modl_weather.dart';
 
 // ignore: must_be_immutable
 class WeatherInfoBody extends StatelessWidget {
-  WeatherInfoBody({
+  const WeatherInfoBody({
     super.key,
     required this.weather,
   });
@@ -17,7 +18,15 @@ class WeatherInfoBody extends StatelessWidget {
         BlocProvider.of<GetWaetherCubit>(context).weatherModel!;
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: Colors.accents),
+        gradient: LinearGradient(
+          colors: [
+            getThemeColor(weather.condition),
+            getThemeColor(weather.condition)[300]!,
+            getThemeColor(weather.condition)[50]!,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
